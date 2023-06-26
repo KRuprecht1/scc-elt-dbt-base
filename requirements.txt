@@ -1,2 +1,2 @@
 markupsafe==2.0.1
-dbt==1.5.2
+dbt-bigquery==1.5.3
