@@ -25,9 +25,8 @@ steps:
   id: Build Airflow DAGs Builder
   args: [
       'build',
-      '-t', '${_ARTIFACT_NAME}',
-      '--cache-from', 'us-central1-docker.pkg.dev/${_PROJECT_ID}/${_ARTIFACT_NAME}/${_IMAGE_NAME}',
-      './'
+      '-t', '${_ARTIFACT_NAME} .',
+      '--cache-from', 'us-central1-docker.pkg.dev/${_PROJECT_ID}/${_ARTIFACT_NAME}/${_IMAGE_NAME}'
     ]
 
 - name: 'gcr.io/cloud-builders/docker'
