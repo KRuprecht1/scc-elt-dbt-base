@@ -43,26 +43,26 @@ steps:
     ]
 
 # Generate dbt documentation
-- name: 'us-central1-docker.pkg.dev/${_PROJECT_ID}/${_ARTIFACT_NAME}/${_IMAGE_NAME}'
-  id: Generate documentation
-  entrypoint: bash
-  args:
-  - -c
-  - |
-    dbt docs generate --vars '{"project_id": "pso-dbt-airflow-demo","bigquery_location": "us","impersonate_service_account": ${_DBT_SERVICE_ACCOUNT},"execution_date": "1970-01-01","source_data_project": "bigquery-public-data"}' --profiles-dir ~/dbt-project/.dbt/ --target cloud-build
+# - name: 'us-central1-docker.pkg.dev/${_PROJECT_ID}/${_ARTIFACT_NAME}/${_IMAGE_NAME}'
+#  id: Generate documentation
+#  entrypoint: bash
+#  args:
+#  - -c
+#  - |
+#    dbt docs generate --vars '{"project_id": "pso-dbt-airflow-demo","bigquery_location": "us","impersonate_service_account": ${_DBT_SERVICE_ACCOUNT},"execution_date": "1970-01-01","source_data_project": "bigquery-public-data"}' --profiles-dir ~/dbt-project/.dbt/ --target cloud-build
 
 # _GCS_BUCKET is the GCS Bucket that will store the dbt documentation
-- name: gcr.io/cloud-builders/gsutil
-  id: Copy the target to GCS
-  args:
-  - -m
-  - rsync
-  - -r
-  - -c
-  - -x
-  - .dockerignore|key|logs|models|tests|.dockerignore|.gitignore|cloudbuild.yaml|Dockerfile|README.md|.git
-  - .
-  - gs://${_GCS_BUCKET}/data/dbt-docs-optimized/
+# - name: gcr.io/cloud-builders/gsutil
+#  id: Copy the target to GCS
+#  args:
+#  - -m
+#  - rsync
+#  - -r
+#  - -c
+#  - -x
+#  - .dockerignore|key|logs|models|tests|.dockerignore|.gitignore|cloudbuild.yaml|Dockerfile|README.md|.git
+#  - .
+#  - gs://${_GCS_BUCKET}/data/dbt-docs-optimized/
 
 substitutions:
   _PROJECT_ID: $PROJECT_ID
