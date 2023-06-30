@@ -24,22 +24,21 @@ steps:
 - name: gcr.io/cloud-builders/docker
   id: Build Airflow DAGs Builder
   entrypoint: 'bash'
-  args: ['-c', 'docker build --cache-from us-central1-docker.pkg.dev/${_PROJECT_ID}/${_ARTIFACT_NAME}/${_IMAGE_NAME} -t ${_ARTIFACT_NAME} .']
+  args: [
+      '-c', 'docker build --cache-from us-central1-docker.pkg.dev/${_PROJECT_ID}/${_ARTIFACT_NAME}/${_IMAGE_NAME} -t ${_ARTIFACT_NAME} .'
+    ]
 
 - name: 'gcr.io/cloud-builders/docker'
   id: Tag Airflow DAGs Builder
   entrypoint: 'bash'
   args: [
-      '-c',
-      'tag',
-      '${_ARTIFACT_NAME} us-central1-docker.pkg.dev/${_PROJECT_ID}/${_ARTIFACT_NAME}/${_IMAGE_NAME}'
+      '-c', 'docker tag ${_ARTIFACT_NAME} us-central1-docker.pkg.dev/${_PROJECT_ID}/${_ARTIFACT_NAME}/${_IMAGE_NAME}'
     ]
 
 - name: gcr.io/cloud-builders/docker
   id: Push Airflow DAGs Builder
   args: [
-      'push',
-      'us-central1-docker.pkg.dev/${_PROJECT_ID}/${_ARTIFACT_NAME}/${_IMAGE_NAME}'
+      '-c', 'docker push us-central1-docker.pkg.dev/${_PROJECT_ID}/${_ARTIFACT_NAME}/${_IMAGE_NAME}'
     ]
 
 # Generate dbt documentation
