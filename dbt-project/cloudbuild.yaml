@@ -37,6 +37,7 @@ steps:
 
 - name: gcr.io/cloud-builders/docker
   id: Push Airflow DAGs Builder
+  entrypoint: 'bash'
   args: [
       '-c', 'docker push us-central1-docker.pkg.dev/${_PROJECT_ID}/${_ARTIFACT_NAME}/${_IMAGE_NAME}'
     ]
@@ -44,7 +45,7 @@ steps:
 # Generate dbt documentation
 - name: 'gcr.io/$PROJECT_ID/airflow-dags-builder'
   id: Generate documentation
-  entrypoint: bash
+  entrypoint: 'bash'
   args:
   - -c
   - |
