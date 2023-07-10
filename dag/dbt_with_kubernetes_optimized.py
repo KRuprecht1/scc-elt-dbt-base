@@ -45,8 +45,12 @@ default_args = {
     "retries": 0,
 }
 
-# Select and use the correct Docker image from the private Google Cloud Repository (GCR)
-IMAGE = "gcr.io/{project}/dbt-builder:latest".format(project=project)
+# Select and use the correct Docker image from the private Google Cloud Artifact Registry
+IMAGE = (
+    "us-central1-docker.pkg.dev/{project}/base-dbt-docker/working-image:latest".format(
+        project=project
+    )
+)
 
 # A Secret is an object that contains a small amount of sensitive data such as
 # a password, a token, or a key. Such information might otherwise be put in a
