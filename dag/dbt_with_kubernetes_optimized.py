@@ -41,7 +41,7 @@ DS = "{{ ds }}"
 default_args = {
     "depends_on_past": False,
     "start_date": datetime.datetime(2016, 1, 1),
-    "end_date": datetime.datetime(2016, 1, 3),
+    # "end_date": datetime.datetime(2016, 1, 3),
     "retries": 0,
 }
 
