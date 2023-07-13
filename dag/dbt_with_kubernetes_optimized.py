@@ -40,8 +40,9 @@ DS = "{{ ds }}"
 # Airflow default arguments
 default_args = {
     "depends_on_past": False,
-    "start_date": datetime.datetime(2016, 1, 1),
-    "end_date": datetime.datetime(2016, 1, 3),
+    "start_date": datetime.datetime(2023, 7, 11),
+    "end_date": datetime.datetime(2023, 7, 12),
+    "catchup": False,
     "retries": 0,
 }
 
@@ -101,7 +102,7 @@ def get_dbt_full_args(dbt_args=None):
     dbt_full_vars = default_dbt_vars
     dbt_full_vars["execution_date"] = dbt_args["execution_date"]
 
-    # Specifcy which model should run
+    # Specify which model should run
     dbt_full_args = default_dbt_args
     dbt_full_args["--models"] = dbt_args["model"]
 
