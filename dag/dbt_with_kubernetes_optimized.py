@@ -41,7 +41,7 @@ DS = "{{ ds }}"
 default_args = {
     "depends_on_past": False,
     "start_date": datetime.datetime(2016, 1, 1),
-    # "end_date": datetime.datetime(2016, 1, 3),
+    "end_date": datetime.datetime(2016, 1, 3),
     "retries": 0,
 }
 
@@ -143,14 +143,12 @@ with models.DAG(
             name=pod_id,
             image_pull_policy="Always",
             arguments=[cmd] + dbt_full_args,
-            namespace="default",
+            namespace="k8s-namespace",
+            service_account_name="dbt-k8s-sa"
             get_logs=True,  # Capture logs from the pod
             log_events_on_failure=True,  # Capture and log events in case of pod failure
             is_delete_operator_pod=True,  # To clean up the pod after runs
             image=IMAGE,
-            secrets=[
-                secret_volume
-            ],  # Set Kubernetes secret reference to dbt's service account JSON
         ).execute(context)
 
     # Raw Model
