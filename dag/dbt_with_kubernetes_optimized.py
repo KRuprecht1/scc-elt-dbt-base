@@ -144,7 +144,9 @@ with models.DAG(
             name=pod_id,
             image_pull_policy="Always",
             arguments=[cmd] + dbt_full_args,
-            namespace="k8s-namespace",
+            # namespace="k8s-namespace",
+            namespace="composer-user-workloads",
+            config_file="/home/airflow/composer_kube_config",
             service_account_name="dbt-k8s-sa",
             get_logs=True,  # Capture logs from the pod
             log_events_on_failure=True,  # Capture and log events in case of pod failure
