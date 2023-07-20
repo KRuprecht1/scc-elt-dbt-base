@@ -147,7 +147,7 @@ with models.DAG(
             # namespace="k8s-namespace",
             namespace="composer-user-workloads",
             config_file="/home/airflow/composer_kube_config",
-            service_account_name="dbt-k8s-sa",
+            # service_account_name="dbt-k8s-sa",
             get_logs=True,  # Capture logs from the pod
             log_events_on_failure=True,  # Capture and log events in case of pod failure
             is_delete_operator_pod=True,  # To clean up the pod after runs
