@@ -90,7 +90,7 @@ default_dbt_args = {
     # Define which target to load
     "--target": env,
     # Which directory to look in for the profiles.yml file.
-    "--profiles-dir": ".dbt",
+    "--profiles-dir": ".dbt/",
 }
 
 
