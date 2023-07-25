@@ -92,7 +92,7 @@ default_dbt_args = {
     # Which directory to look in for the profiles.yml file.
     "--profiles-dir": "dbt-project/.dbt/",
     # Which directory to look in for the dbt_project.yml file.
-    "--project_dir": "dbt-project/",
+    "--project-dir": "dbt-project/",
 }
 
 
