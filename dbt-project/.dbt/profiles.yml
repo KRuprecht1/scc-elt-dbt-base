@@ -48,4 +48,4 @@ dbt_airflow_on_gcp:
       location: "{{ var('bigquery_location') }}"
       priority: batch
       retries: 0
-      impersonate_service_account: "dbt-sa@temp-lr32rlns-wsky.iam.gserviceaccount.com"
+      impersonate_service_account: "dbt-k8s-sa@temp-lr32rlns-wsky.iam.gserviceaccount.com"
